@@ -898,6 +898,89 @@ th {
   background: rgba(17, 49, 76, 0.03);
 }
 
+.circulation-workstation .two-column-grid {
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.circulation-workstation[data-circulation-step="1"] .two-column-grid > :not(:first-child),
+.circulation-workstation[data-circulation-step="2"] .two-column-grid > :first-child,
+.circulation-workstation[data-circulation-mode=""] .circulation-validation {
+  display: none;
+}
+
+.circulation-workstation[data-circulation-step="2"] .two-column-grid > :not(:first-child) {
+  grid-column: 1 / -1;
+}
+
+.circulation-workstation[data-circulation-step="1"] .two-column-grid > :first-child {
+  animation: circulation-step-in 260ms ease both;
+}
+
+.circulation-workstation[data-circulation-step="2"] .circulation-book-stage {
+  animation: circulation-step-in 260ms ease both;
+}
+
+.circulation-workstation .circulation-step-actions {
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+
+.circulation-student-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px 16px;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(47, 111, 237, 0.16);
+  border-radius: 14px;
+  background: rgba(47, 111, 237, 0.045);
+}
+
+.circulation-student-summary strong {
+  color: #1a3558;
+}
+
+.circulation-student-summary > span:last-of-type {
+  color: #627794;
+}
+
+.circulation-action-choice {
+  margin: 8px 0 22px;
+}
+
+.circulation-action-choice h3 {
+  margin: 0 0 12px;
+  color: #1a3558;
+}
+
+.circulation-book-stage.awaiting-action .rfid-station-input,
+.circulation-book-stage.awaiting-action > .workspace-field,
+.circulation-book-stage.awaiting-action > .search-result-list,
+.circulation-book-stage.awaiting-action > .lookup-grid,
+.circulation-book-stage.awaiting-action > .kpi-grid,
+.circulation-book-stage.awaiting-action > .validation-box {
+  display: none;
+}
+
+.circulation-workstation .register-steps .step-pill:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@keyframes circulation-step-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .warning-text {
   color: #d17714;
   font-weight: 700;
@@ -1535,6 +1618,17 @@ th {
 
 .notification-card > div:nth-child(2) {
   flex: 1;
+}
+
+.notification-open-button {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .notification-card small {

@@ -1,106 +1,129 @@
-const categories = [
-  'Computer Science', 'Artificial Intelligence', 'Machine Learning', 'Data Science',
-  'Programming', 'Web Development', 'Databases', 'Networks', 'Operating Systems',
-  'Computer Architecture', 'Cyber Security', 'Cloud Computing', 'Software Engineering',
-  'Mathematics', 'Physics', 'Electronics', 'Mechanical', 'Civil', 'Electrical',
-  'Management', 'Aptitude', 'Competitive Exams', 'General Knowledge', 'Literature',
+export const categories = [
+  'Network Analysis', 'Digital Electronics', 'Analog Electronics', 'C Programming',
+  'Microprocessors & Microcontrollers', 'Computer Science', 'Artificial Intelligence',
+  'Machine Learning', 'Data Science', 'Programming', 'Web Development', 'Databases',
+  'Networks', 'Operating Systems', 'Computer Architecture', 'Cyber Security',
+  'Cloud Computing', 'Software Engineering', 'Mathematics', 'Physics', 'Electronics',
+  'Mechanical', 'Civil', 'Electrical', 'Management', 'Aptitude', 'Competitive Exams',
+  'General Knowledge', 'Literature',
 ]
-const authors = [
-  'Robert C. Martin', 'Andrew Ng', 'Jane Austen', 'Katherine Johnson', 'Eric Ries',
-  'Peter Norvig', 'David Flanagan', 'Aditya Bhargava', 'Amitav Ghosh', 'C. J. Date',
-  'William Stallings', 'A. S. Tanenbaum', 'Bjarne Stroustrup', 'Michael Goodrich',
-  'H. G. Wells', 'Martin Kleppmann', 'Ian Goodfellow', 'S. K. Sinha', 'R. K. Jain',
-  'N. K. Singh',
-]
-const titles = [
-  'Clean Code', 'Deep Learning with Python', 'Introduction to Algorithms',
-  'The Design of Everyday Things', 'Computer Networking: A Top-Down Approach',
-  'Database System Concepts', 'Operating System Concepts', 'Artificial Intelligence: A Modern Approach',
-  'The Pragmatic Programmer', 'Learning Python', 'Design Patterns', 'Refactoring',
-  'The C Programming Language', 'Structure and Interpretation of Computer Programs',
-  'Data Science from Scratch', 'Hands-On Machine Learning', 'Computer Architecture',
-  'Engineering Mathematics', 'Principles of Management', 'The Great Gatsby',
-  'Physics for Scientists and Engineers', 'Fundamentals of Electric Circuits',
-  'Introduction to Information Security', 'Cloud Native Patterns', 'Web Development with React',
-  'Discrete Mathematics and Its Applications', 'The Lean Startup', 'Mechanical Engineering Design',
-  'Surveying and Levelling', 'Indian Economy', 'Quantitative Aptitude',
-]
-const publishers = ['Pearson', 'McGraw Hill', 'Oxford University Press', 'Prentice Hall', 'Wiley', 'MIT Press', 'Springer', 'O’Reilly']
-const departments = ['Computer Science', 'Electronics', 'Mechanical', 'Civil', 'Electrical', 'Management', 'Mathematics', 'Physics']
-const names = ['Ananya Sharma', 'Kabir Patel', 'Meera Reddy', 'Aarav Nair', 'Ishita Iyer', 'Rohan Singh', 'Saanvi Khan', 'Vikram Banerjee', 'Neha Gupta', 'Aditya Malhotra', 'Tanya Verma', 'Arjun Kapoor', 'Disha Das', 'Rajat Mishra', 'Pooja Joshi', 'Varun Rao', 'Riya Bhatt', 'Karan Kulkarni', 'Sneha Chawla', 'Yash Srinivasan']
-const locations = ['CS / Software Engineering / A-12', 'CS / Networks / B-08', 'AI / Machine Learning / C-03', 'DB / Databases / D-15', 'Networks / Security / E-02', 'Maths / Reference / H-09']
-const dateOffset = (days) => new Date(Date.now() + days * 86400000).toISOString().slice(0, 10)
 
-export const createInitialBooks = () => Array.from({ length: 120 }, (_, index) => {
-  const id = index + 1
-  const title = titles[index % titles.length]
-  const status = index % 11 === 0 ? 'Issued' : index % 29 === 0 ? 'Lost' : index % 23 === 0 ? 'Damaged' : 'Available'
-  const category = categories[index % categories.length]
+export const departments = ['ECE', 'CSE', 'Computer Science', 'Electronics', 'Mechanical', 'Civil', 'Electrical', 'Management', 'Mathematics', 'Physics']
+
+const now = () => new Date().toISOString()
+
+const initialBookRecords = [
+  ['Network Analysis', 'ECE', 'Engineering Circuit Analysis', 'William H. Hayt Jr., Jack E. Kemmerly & Steven M. Durbin', 2012, '8th Edition', '60 C0 3E 3B'],
+  ['Network Analysis', 'ECE', 'Network Analysis', 'M. E. Van Valkenburg', 1974, '3rd Edition', '4D A1 DE 6B'],
+  ['Digital Electronics', 'ECE', 'Digital Electronics: Principles and Applications', 'Roger L. Tokheim', 2013, '8th Edition', 'C3 FA 00 1D'],
+  ['Digital Electronics', 'ECE', 'Digital Logic and Computer Design', 'M. Morris Mano', 1979, '1st Edition', '14 D4 71 A9'],
+  ['Analog Electronics', 'ECE', 'Electronic Devices and Circuit Theory', 'Robert L. Boylestad & Louis Nashelsky', 2013, '11th Edition', 'A3 17 01 1D'],
+  ['Analog Electronics', 'ECE', 'Fundamentals of Microelectronics', 'Behzad Razavi', 2014, '2nd Edition', '32 D3 EF 06'],
+  ['C Programming', 'CSE', 'Programming in ANSI C', 'E. Balagurusamy', 2019, '8th Edition', 'FB 08 CC 19'],
+  ['C Programming', 'CSE', 'Let Us C: Authentic Guide to C Programming Language', 'Yashavant Kanetkar', 2020, '17th Edition', 'F0 D4 44 3B'],
+  ['Microprocessors & Microcontrollers', 'CSE', 'Microprocessor Architecture, Programming, and Applications with the 8085', 'Ramesh S. Gaonkar', 2002, '5th Edition', '33 D0 00 1D'],
+  ['Microprocessors & Microcontrollers', 'CSE', 'The 8051 Microcontroller and Embedded Systems', 'Muhammad Ali Mazidi, Janice G. Mazidi & Rolin D. McKinlay', 2014, '2nd Edition', 'E4 63 13 A9'],
+]
+
+const initialMemberRecords = [
+  ['Ganireddy Pujeetha', '23L31A0414', '95 92 4F 06'],
+  ['Gogireddy Haswanth', '23L31A0450', '8D E1 66 06'],
+  ['Desavath Abhishek', '24L35A0403', '94 0C A5 A9'],
+  ['Geddavalasa Vivek', '23L31A0449', '64 D9 5B A9'],
+]
+
+export const createInitialBooks = () => initialBookRecords.map(([category, department, title, author, publicationYear, edition, rfidUid], index) => {
+  const bookId = `COPY-${String(index + 1).padStart(5, '0')}`
+  const categoryIndex = initialBookRecords.findIndex((record) => record[0] === category)
+  const timestamp = now()
   return {
-    id: `BK-${String(id).padStart(4, '0')}`,
-    accessionNumber: `ACC-${String(id + 900).padStart(6, '0')}`,
-    bookCode: `B${String(id).padStart(5, '0')}`,
-    title: index < titles.length ? title : `${['Modern', 'Applied', 'Practical', 'Advanced', 'Fundamentals of'][index % 5]} ${titles[(index * 7) % titles.length]}`,
-    subtitle: 'Academic reference and guided practice',
-    author: authors[index % authors.length],
-    coAuthors: [authors[index % authors.length]],
-    isbn: `978${String(1000000000 + index).slice(0, 10)}`,
-    publisher: publishers[index % publishers.length],
-    publicationYear: 2018 + (index % 8),
-    edition: 1 + (index % 5),
-    language: 'English',
+    id: bookId,
+    bookId,
+    copyId: bookId,
+    titleGroupId: `TITLE-${String(index + 1).padStart(5, '0')}`,
+    copyNumber: 1,
+    accessionNumber: `ACC-${String(index + 1).padStart(5, '0')}`,
+    bookCode: `B${String(index + 1).padStart(5, '0')}`,
     category,
-    subCategory: category,
-    department: departments[index % departments.length],
-    pages: 240 + (index * 13 % 320),
-    format: index % 2 ? 'Paperback' : 'Hardcover',
-    description: 'A well-regarded academic title for classroom study, practical work, and independent learning.',
-    coverImage: '',
-    rfidId: `RFID-IND-2026-${String(index + 1).padStart(6, '0')}`,
+    categoryId: `CAT-${String(categoryIndex + 1).padStart(3, '0')}`,
+    department,
+    title,
+    author,
+    authors: author,
+    coAuthors: [],
+    isbn: '',
+    publisher: '',
+    publicationYear,
+    edition,
+    language: '',
+    pages: 0,
+    description: '',
+    rfidId: rfidUid,
+    rfidUid,
     rfidStatus: 'Active',
-    availabilityStatus: status,
-    condition: status === 'Damaged' ? 'Damaged' : status === 'Lost' ? 'Lost' : 'Good',
-    shelf: `A-${String(index % 18 + 1).padStart(2, '0')}`,
-    rack: `Rack ${String.fromCharCode(65 + index % 6)}`,
-    floor: `Floor ${2 + index % 3}`,
-    location: locations[index % locations.length],
+    availabilityStatus: 'Available',
+    status: 'Available',
+    condition: 'Good',
+    branch: 'Central Library',
+    workingHours: '08:00-20:00',
+    floor: '',
+    section: '',
+    rack: '',
+    shelf: '',
+    location: 'Central Library',
+    quantity: 1,
     totalCopies: 1,
-    availableCopies: status === 'Available' ? 1 : 0,
-    issuedCopies: status === 'Issued' ? 1 : 0,
+    availableQuantity: 1,
+    availableCopies: 1,
+    issuedCopies: 0,
     reservedCopies: 0,
-    price: 350 + index * 27,
-    acquisitionDate: '2024-01-15',
-    borrowerId: status === 'Issued' ? `M-${1000 + index % 60}` : null,
-    dueDate: status === 'Issued' ? dateOffset(index % 9 - 3) : null,
-    tags: [category.toLowerCase(), 'rfid'],
-    createdAt: dateOffset(-((120 - id) % 180)),
+    lostCopies: 0,
+    damagedCopies: 0,
+    borrowerId: null,
+    currentHolderId: null,
+    dueDate: null,
+    tags: [category.toLowerCase(), department.toLowerCase()],
+    createdAt: timestamp,
+    updatedAt: timestamp,
     archived: false,
   }
 })
 
-export const createInitialMembers = () => Array.from({ length: 60 }, (_, index) => {
-  const name = names[index % names.length]
-  const [first, last] = name.toLowerCase().split(' ')
+export const createInitialMembers = () => initialMemberRecords.map(([name, studentId, rfidCardId], index) => {
+  const id = `MEM-${String(index + 1).padStart(5, '0')}`
+  const timestamp = now()
   return {
-    id: `M-${1000 + index}`,
-    studentId: `2024${departments[index % departments.length].slice(0, 2).toUpperCase()}${String(index + 1).padStart(3, '0')}`,
-    libraryId: `LIB-${String(index + 1001).padStart(4, '0')}`,
+    id,
+    memberId: id,
+    studentId,
+    registrationNumber: studentId,
+    registerNumber: studentId,
+    libraryId: `LIB-${String(index + 1).padStart(5, '0')}`,
     name,
-    email: `${first}.${last}@northbridge.edu`,
-    phone: `+91 98${String(1000000 + index).slice(0, 7)}`,
-    department: departments[index % departments.length],
-    program: index % 2 ? 'M.Tech' : 'B.Tech',
-    year: 1 + index % 4,
-    section: `A-${index % 5 + 1}`,
-    memberType: index % 5 === 0 ? 'Faculty' : 'Student',
-    joinDate: '2024-08-10',
-    status: index % 17 === 0 ? 'Blocked' : 'Active',
-    borrowedBooks: 0,
-    overdueBooks: 0,
-    fineAmount: 0,
-    rfidCardId: `CARD-${String(2000 + index).padStart(6, '0')}`,
+    email: `${studentId.toLowerCase()}@library.edu`,
+    phone: `900000${String(index + 1).padStart(4, '0')}`,
+    rfidCardId,
+    rfidUid: rfidCardId,
+    department: 'ECE',
+    program: 'B.Tech Electronics and Communication Engineering',
+    year: '4th Year',
+    section: 'A',
+    memberType: 'Student',
+    status: 'Active',
+    address: '',
     profileImage: '',
-    createdAt: dateOffset(-((60 - index) % 100)),
+    joinDate: '',
+    registrationDate: timestamp.slice(0, 10),
+    membershipExpiry: '',
+    booksIssued: 0,
+    booksReturned: 0,
+    borrowedBooks: 0,
+    currentBooks: [],
+    overdueBooks: 0,
+    history: [],
+    fineAmount: 0,
+    createdAt: timestamp,
+    updatedAt: timestamp,
     archived: false,
   }
 })
@@ -108,165 +131,53 @@ export const createInitialMembers = () => Array.from({ length: 60 }, (_, index) 
 export const createInitialState = () => {
   const books = createInitialBooks()
   const members = createInitialMembers()
-  const transactions = books.filter((book) => book.availabilityStatus === 'Issued').map((book, index) => ({
-    id: `TR-${String(index + 1).padStart(4, '0')}`,
-    bookId: book.id,
-    bookTitle: book.title,
-    memberId: book.borrowerId,
-    memberName: members.find((member) => member.id === book.borrowerId)?.name || members[0].name,
-    rfidId: book.rfidId,
-    issueDate: dateOffset(-14),
-    dueDate: book.dueDate,
-    returnedDate: null,
-    status: 'Issued',
-    fine: 0,
-    renewalCount: 0,
-    createdAt: dateOffset(-14),
-  }))
-  books.filter((book) => book.availabilityStatus === 'Issued').forEach((book) => {
-    const member = members.find((item) => item.id === book.borrowerId)
-    if (member) member.borrowedBooks += 1
-  })
-  for (let index = 0; index < 42; index += 1) {
-    const book = books[(index * 7) % books.length]
-    const member = members[(index * 11) % members.length]
-    transactions.push({
-      id: `TR-${String(transactions.length + 1).padStart(4, '0')}`,
-      bookId: book.id,
-      bookTitle: book.title,
-      memberId: member.id,
-      memberName: member.name,
-      rfidId: book.rfidId,
-      issueDate: dateOffset(-30 - index),
-      dueDate: dateOffset(-16 - index),
-      returnedDate: dateOffset(-12 - index),
-      status: 'Returned',
-      fine: index % 5 === 0 ? 50 : 0,
-      renewalCount: index % 3,
-      createdAt: dateOffset(-30 - index),
-    })
-  }
-  const holdableBooks = books.filter((item) => item.availabilityStatus === 'Available')
-  const reservations = Array.from({ length: 25 }, (_, index) => {
-    const book = holdableBooks[(index * 3 + 2) % holdableBooks.length]
-    const member = members[(index * 7 + 1) % members.length]
-    return {
-      id: `RES-${String(index + 1).padStart(4, '0')}`,
-      bookId: book.id,
-      bookTitle: book.title,
-      memberId: member.id,
-      memberName: member.name,
-      createdAt: dateOffset(-index - 1),
-      queuePosition: 1,
-      status: ['PENDING', 'READY_FOR_PICKUP', 'FULFILLED', 'EXPIRED', 'CANCELLED'][index % 5],
-      expiresAt: dateOffset(5),
-    }
-  })
-  reservations.filter((item) => ['PENDING', 'READY_FOR_PICKUP'].includes(item.status)).forEach((reservation) => {
-    const book = books.find((item) => item.id === reservation.bookId)
-    if (!book) return
-    book.reservedCopies += 1
-    if (reservation.status === 'READY_FOR_PICKUP') {
-      book.availabilityStatus = 'Reserved'
-      book.availableCopies = 0
-    }
-  })
-  const returnedTransactions = transactions.filter((item) => item.status === 'Returned')
-  const fines = Array.from({ length: 30 }, (_, index) => {
-    const transaction = returnedTransactions[index % returnedTransactions.length]
-    const amount = 30 + index % 10 * 10
-    transaction.fine = amount
-    return {
-      id: `FINE-${String(index + 1).padStart(4, '0')}`,
-      transactionId: transaction.id,
-      memberId: transaction.memberId,
-      memberName: transaction.memberName,
-      bookId: transaction.bookId,
-      bookTitle: transaction.bookTitle,
-      dueDate: transaction.dueDate,
-      returnedDate: transaction.returnedDate,
-      daysLate: 3 + index % 10,
-      amount,
-      status: index % 2 ? 'PAID' : 'PENDING',
-      createdAt: transaction.createdAt,
-    }
-  })
-  members.forEach((member) => {
-    member.fineAmount = fines.filter((fine) => fine.memberId === member.id && fine.status === 'PENDING').reduce((total, fine) => total + fine.amount, 0)
-  })
-  const now = new Date().toISOString()
   return {
-    books, members, transactions, reservations, fines,
+    books,
+    members,
+    transactions: [],
+    reservations: [],
+    fines: [],
     users: [
       { id: 'U-001', name: 'Aditi Verma', role: 'ADMIN', email: 'admin@northbridge.edu', department: 'Administration' },
       { id: 'U-002', name: 'Nisha Rao', role: 'LIBRARIAN', email: 'librarian@northbridge.edu', department: 'Library Services' },
       { id: 'U-003', name: 'Sanjay Das', role: 'ASSISTANT_LIBRARIAN', email: 'assistant@northbridge.edu', department: 'Library Services' },
-      { id: 'U-004', name: 'Dr. Kavita Menon', role: 'FACULTY', email: 'faculty@northbridge.edu', department: 'Computer Science' },
-      { id: 'U-005', name: 'Rahul Mehta', role: 'STUDENT', email: 'student@northbridge.edu', department: 'Computer Science', memberId: 'M-1001' },
+      { id: 'U-004', name: 'Faculty Demo', role: 'FACULTY', email: 'faculty@northbridge.edu', department: 'ECE' },
+      { id: 'U-005', name: members[0].name, role: 'STUDENT', email: '', memberId: members[0].id },
     ],
-    rfidLogs: Array.from({ length: 20 }, (_, index) => ({
-      id: `RFLOG-${index + 1}`, rfidId: books[index].rfidId, bookId: books[index].id,
-      bookTitle: books[index].title, event: 'LOOKUP', result: 'SUCCESS',
-      device: 'Reader 01', user: 'Nisha Rao', location: 'Main Desk',
-      timestamp: dateOffset(-index),
-    })),
-    rfidDevices: Array.from({ length: 10 }, (_, index) => ({
-      id: `RDR-${String(index + 1).padStart(2, '0')}`,
-      name: ['Reader 01', 'Reader 02', 'Self Checkout 01', 'Shelf Scanner 01', 'Return Station 01', 'Reader 06', 'Shelf Scanner 02', 'Security Gate 01', 'Self Checkout 02', 'Mobile Scanner'][index],
-      status: ['CONNECTED', 'IDLE', 'CONNECTED', 'SCANNING', 'OFFLINE'][index % 5],
-      signal: index % 3 === 0 ? 'Strong' : 'Moderate', location: ['Main Desk', 'Self Service', 'Ground Floor', 'CS Stack', 'Front Desk'][index % 5],
-      firmware: 'v3.4.1', totalScans: 120 + index * 53, lastHeartbeat: now,
-    })),
-    notifications: Array.from({ length: 20 }, (_, index) => ({
-      id: `NOT-${index + 1}`, title: [
-        '3 books are overdue.', `${books[index].rfidId} was scanned.`,
-        'Reservation ready for pickup.', 'New acquisition received.',
-        'RFID Reader 02 is offline.', 'Book successfully returned.',
-      ][index % 6],
-      category: ['Overdue', 'RFID', 'Reservation', 'Acquisition', 'Device', 'Circulation'][index % 6],
-      entityId: books[index].id, read: index > 5, createdAt: dateOffset(-index),
-    })),
-    acquisitions: Array.from({ length: 20 }, (_, index) => ({
-      id: `PO-${String(index + 1).padStart(4, '0')}`,
-      vendor: ['Academic House', 'Scholars Supply Co.', 'Campus Books Ltd.'][index % 3],
-      title: titles[index % titles.length], isbn: `978${String(1000000000 + index).slice(0, 10)}`,
-      quantity: 2 + index % 9, receivedQuantity: 0,
-      unitPrice: 450 + index * 15, total: (2 + index % 9) * (450 + index * 15),
-      orderDate: dateOffset(-index * 2), expectedDate: dateOffset(14 + index),
-      status: index % 2 ? 'ORDERED' : 'REQUESTED',
-      createdAt: dateOffset(-index * 2),
-    })),
-    auditLogs: Array.from({ length: 20 }, (_, index) => ({
-      id: `AUD-SEED-${index + 1}`,
-      action: ['BOOK_CREATED', 'RFID_SCANNED', 'BOOK_ISSUED', 'BOOK_RETURNED', 'MEMBER_CREATED'][index % 5],
-      description: [
-        `Catalog record verified: ${books[index].title}.`,
-        `RFID scan recorded for ${books[index].rfidId}.`,
-        `Circulation activity recorded for ${books[index].title}.`,
-        `Return history reconciled for ${books[index].title}.`,
-        `Member record reviewed: ${members[index].name}.`,
-      ][index % 5],
-      entity: index % 5 === 4 ? 'member' : 'book',
-      entityId: index % 5 === 4 ? members[index].id : books[index].id,
-      user: ['Nisha Rao', 'Sanjay Das', 'Aditi Verma'][index % 3],
-      timestamp: dateOffset(-index),
-    })),
+    rfidLogs: [],
+    rfidDevices: [{
+      id: 'RDR-01', name: 'Simulation Reader', status: 'SIMULATION',
+      signal: '—', location: 'Central Library', firmware: '—', totalScans: 0, lastHeartbeat: now(),
+    }],
+    notifications: [],
+    acquisitions: [],
+    suppliers: [],
+    auditLogs: [],
     inventoryAudits: [],
     settings: {
-      libraryName: 'Northbridge University Library',
+      libraryName: 'Library Management System',
       branch: 'Central Library',
       loanPeriodDays: 14,
-      finePerDay: 10,
+      finePerDay: 5,
       borrowingLimit: 5,
+      memberTypeRules: {
+        Student: { borrowingLimit: 5, loanPeriodDays: 14 },
+        Faculty: { borrowingLimit: 10, loanPeriodDays: 30 },
+        Staff: { borrowingLimit: 5, loanPeriodDays: 21 },
+      },
       blockingFineAmount: 500,
+      blockBorrowingWithUnpaidFines: true,
+      blockBorrowingWithOverdueBooks: false,
       renewalLimit: 2,
+      pickupWindowDays: 2,
+      maximumActiveReservations: 5,
+      allowRenewalWithReservations: false,
       autoLookup: true,
       autoFocus: true,
       duplicateScanPrevention: true,
       simulationMode: true,
     },
+    currentUser: null,
     lastRFIDScan: null,
   }
 }
-
-export { categories, departments }
