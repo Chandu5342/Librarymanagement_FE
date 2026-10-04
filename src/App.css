@@ -889,6 +889,16 @@ th {
   font-weight: 600;
 }
 
+.validation-box.validation-warning {
+  background: rgba(212, 142, 20, 0.08);
+  color: #9a6500;
+}
+
+.validation-box.validation-error {
+  background: rgba(198, 55, 55, 0.08);
+  color: #b42318;
+}
+
 .return-result {
   display: flex;
   flex-direction: column;

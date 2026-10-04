@@ -3,8 +3,8 @@ export function RFIDScanner({
   value,
   onChange,
   onScan,
-  onSimulate,
-  simulateLabel = 'Simulate scan',
+  onGenerate,
+  generateLabel = 'Generate unique RFID',
   placeholder,
   disabled = false,
   status,
@@ -37,7 +37,7 @@ export function RFIDScanner({
       </label>
       <div className="button-group">
         <button type="button" className="primary-button" onClick={handleScan} disabled={disabled || !value.trim()}>Scan / lookup</button>
-        {onSimulate && <button type="button" className="ghost-button" onClick={onSimulate} disabled={disabled}>{simulateLabel}</button>}
+        {onGenerate && <button type="button" className="ghost-button" onClick={onGenerate} disabled={disabled}>{generateLabel}</button>}
         <button type="button" className="ghost-button" onClick={() => onChange('')} disabled={disabled || !value}>Clear</button>
       </div>
       {status && <div className="rfid-scanner-status" role="status">{status}</div>}
